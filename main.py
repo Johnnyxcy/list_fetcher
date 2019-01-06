@@ -1,4 +1,3 @@
-import progressbar
 import argparse
 import radiko as R
 import search as S

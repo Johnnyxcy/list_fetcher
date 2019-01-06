@@ -100,7 +100,7 @@ def search(df, key_word, mapping, if_output, save_to):
                                 mapping[match]['info'],
                                 mapping[match]['pfm'],
                                 mapping[match]['url']]
-        # Fit column width
+        # Fit column and row width
         text_wrap = workbook.add_format({'text_wrap': True, 
                             'align': 'left',
                             'valign': 'vcenter'})

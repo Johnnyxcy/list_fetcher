@@ -16,7 +16,7 @@ features including:
 
     `$python main.py {STATION_NAME} --keyword YOUR_KEYWORD [--output True] [--save YOUR_PATH]`
 
-** Note: `{}` indicates this argument is mandatory, `[]` indicates the argument is optional. The default save path is `.\output\STATION_NAME_DATE`
+**Note**: `{}` indicates this argument is mandatory, `[]` indicates the argument is optional. The default save path is `.\output\STATION_NAME_DATE`
 
 ## Reuqired
 
@@ -24,23 +24,23 @@ features including:
 
 * [Pandas](https://pandas.pydata.org/) 0.20.3 or above
 
-    `pip install pandas`
+    `$pip install pandas`
 
 * [argParser](https://docs.python.org/3/library/argparse.html)
 
-    `pip install argparser`
+    `$pip install argparser`
 
 * [pathLib](https://docs.python.org/3/library/pathlib.html)
 
-    `pip pathlib`
+    `$pip pathlib`
 
 * [xmltodict](https://pypi.org/project/xmltodict/)
 
-    `pip install xmltodict`
+    `$pip install xmltodict`
 
 * [requests](http://docs.python-requests.org/en/master/)
 
-    `pip install requests`
+    `$pip install requests`
 
 ---
 

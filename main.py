@@ -5,8 +5,8 @@ import search as S
 def main():
     parser = argparse.ArgumentParser(
         description='Get a program list and get all programs that interested in.')
-    parser.add_argument('url', metavar='URL', type=str, nargs=1, 
-                        help='API URL')
+    parser.add_argument('station_name', metavar='SN', type=str, nargs=1, 
+                        help='name of station (radiko, ...)')
     parser.add_argument('--keyword', type=str, nargs=1, default=[''],
                         help='Keyword to search for')
     parser.add_argument('--output', type=bool, default=True,
@@ -25,7 +25,12 @@ def main():
                 'keywords': []
                 }
         }
-    df, mapping = R.radiko(args.url[0], mapping)
+    url = ''
+    if args.station_name == 'radiko' or 'rajiko' or 'ラジコ':
+        url = 'http://radiko.jp/v3/program/today/JP13.xml'
+    else:
+        print('The station requested for has not yet implemented.')
+    df, mapping = R.radiko(url, mapping)
     S.search(df, args.keyword[0], mapping, args.output, args.save)
 
 if __name__ == '__main__':

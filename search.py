@@ -63,6 +63,7 @@ def search(df, key_word, mapping, if_output, save_to):
     matches = []
     for col in df:
         if col != 'Time':
+            worksheet.set_column(k-65, k-65, 15)
             cur_prog = df[col][0]
             frm = 2
             for i in range(tol_dur):
@@ -83,9 +84,9 @@ def search(df, key_word, mapping, if_output, save_to):
                         worksheet.merge_range(chr(k)+str(frm)+':'+chr(k)+str(to), cur_prog, merge_format)
                     frm = to + 1
                     cur_prog = df[col][i]
-
         k += 1
 
+    # Search Results Output
     if if_output and len(key_word) != 0:
         output_df = pd.DataFrame(index=['Duration', 
                                         'Start Time', 

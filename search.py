@@ -1,6 +1,8 @@
 import pandas as pd
 from pathlib import Path
-from datetime import date
+from datetime import datetime
+import pytz
+
 def search(df, key_word, mapping, if_output, save_to):
     '''
     Search for the given keyword and highlight the cells that
@@ -13,7 +15,7 @@ def search(df, key_word, mapping, if_output, save_to):
     peronalities, information and url.
     ''' 
     if save_to[-1] != '/': save_to += '/'
-    dir = save_to + 'radiko_' + date.today().strftime('%y%m%d')
+    dir = save_to + 'radiko_' + datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%y%m%d')
     if not Path(dir).exists():
             Path(dir).mkdir(parents=True)
     writer = pd.ExcelWriter(Path(dir+'/list'+key_word+'.xlsx'), engine='xlsxwriter')
@@ -88,14 +90,16 @@ def search(df, key_word, mapping, if_output, save_to):
 
     # Search Results Output
     if if_output and len(key_word) != 0:
-        output_df = pd.DataFrame(index=['Duration', 
+        output_df = pd.DataFrame(index=['Station',
+                                        'Duration', 
                                         'Start Time', 
                                         'End Time', 
                                         'Detailed Information', 
                                         'Personality', 
                                         'Website'])
         for match in matches:
-            output_df[match] = [str(mapping[match]['duration']) + ' min',
+            output_df[match] = [mapping[match]['station'],
+                                str(mapping[match]['duration']) + ' min',
                                 mapping[match]['start_time'][0:2] + ':' + mapping[match]['start_time'][2:4],
                                 mapping[match]['end_time'][0:2] + ':' + mapping[match]['end_time'][2:4],
                                 mapping[match]['info'],
@@ -107,11 +111,12 @@ def search(df, key_word, mapping, if_output, save_to):
                             'valign': 'vcenter'})
         output_df.to_excel(writer, sheet_name='Search Results', encoding='utf-8-sig')
         output_worksheet = writer.sheets['Search Results']
-        for row in range(len(output_df)+1):
-            if row == 4:
-                output_worksheet.set_row(row, 200, text_wrap)
+        output_worksheet.set_row(0, 20, text_wrap)
+        for row in range(len(output_df)):
+            if list(output_df.index)[row] == 'Detailed Information':
+                output_worksheet.set_row(row+1, 200, text_wrap)
             else:
-                output_worksheet.set_row(row, 20, text_wrap)
+                output_worksheet.set_row(row+1, 20, text_wrap)
         for col in range(len(output_df.columns)+1):
             if col == 0:
                 output_worksheet.set_column(col, col, 15, text_wrap)

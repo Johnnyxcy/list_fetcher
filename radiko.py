@@ -40,6 +40,7 @@ def radiko(url, mapping):
                 for _ in range(diff): ls.append('No Live')
             dur = int(int(p['@dur']) / 60)
             cur_el = {
+                'station': station_name,
                 'duration': dur,
                 'start_time': p['@ftl'], 
                 'end_time': p['@tol'], 

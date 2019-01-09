@@ -16,6 +16,7 @@ def main():
     args = parser.parse_args()
     mapping = {'No Live': 
                 {
+                'station': '',
                 'duration': 0, 
                 'start_time': '--', 
                 'end_time': '--', 

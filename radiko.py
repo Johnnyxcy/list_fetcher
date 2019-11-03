@@ -11,7 +11,7 @@ def radiko(url, mapping):
         d(string): url of radiko programs list API
         
     Returns: 
-        [pd.DataFrame, dict]: Pandas DataFrame and a 
+        [pd.DataFrame, dict]: Pandas DataFrame and a dictionary
         mapping including detailed information of programs.
     """
     res = requests.get(url)

@@ -7,9 +7,12 @@ def radiko(url, mapping):
     Constructs a Pandas Data Frame based on the given 
     url of radiko programs list API.
 
-    :param d: url of radiko programs list API
-    :returns: Pandas DataFrame and a mapping including 
-    detailed information of programs.
+    Args:
+        d(string): url of radiko programs list API
+        
+    Returns: 
+        [pd.DataFrame, dict]: Pandas DataFrame and a 
+        mapping including detailed information of programs.
     """
     res = requests.get(url)
     print('Status: ', str(res.status_code))

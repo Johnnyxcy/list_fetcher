@@ -4,8 +4,7 @@ from datetime import datetime
 import pytz
 
 def search(df, key_word, mapping, if_output, save_to):
-    '''
-    Search for the given keyword and highlight the cells that
+    '''Search for the given keyword and highlight the cells that
     match the keywords. 
 
     :param df: Pandas DataFrame of the programs
